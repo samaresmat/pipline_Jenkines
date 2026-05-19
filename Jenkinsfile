@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:20-alpine'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
 
     environment {
         APP_NAME       = 'my-app'
@@ -31,6 +36,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building application...'
+                sh 'node --version'
+                sh 'npm --version'
                 sh 'npm ci'
                 sh 'npm run build --if-present'
             }
