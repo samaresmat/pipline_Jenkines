@@ -24,13 +24,7 @@ COPY --from=builder /app/dist ./dist
 # COPY --from=builder /app/src ./src
 
 EXPOSE 8080
-stage('Build') {
-    steps {
-        sh 'node --version'   // تأكد إنه شايفه
-        sh 'npm ci'
-        sh 'npm run build --if-present'
-    }
-}
+
 CMD ["node", "dist/index.js"]
 # Adjust CMD to your entry point, e.g.:
 # CMD ["node", "src/server.js"]
