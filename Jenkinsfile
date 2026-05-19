@@ -55,6 +55,13 @@ pipeline {
                 // sh 'go build ./...'
             }
         }
+        stage('Build') {
+          steps {
+                sh 'node --version'   // تأكد إنه شايفه
+                sh 'npm ci'
+                sh 'npm run build --if-present'
+                     }
+        }
 
         // ──────────────────────────────────────────────
         // 3. TEST
