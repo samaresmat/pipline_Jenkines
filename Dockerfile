@@ -23,6 +23,9 @@ COPY --from=builder /app/dist ./dist
 # If no build step, copy src instead:
 # COPY --from=builder /app/src ./src
 
+agent {
+    docker { image 'node:20-alpine' }
+}
 EXPOSE 8080
 
 CMD ["node", "dist/index.js"]
